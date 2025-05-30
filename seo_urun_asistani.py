@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import openai
-
+client = openai.OpenAI()
 st.set_page_config(page_title="SEO Ürün Açıklama Asistanı", layout="wide")
 
 st.title("🦾 Katia & Bony - SEO Ürün Başlık & Açıklama Asistanı")
@@ -35,7 +35,7 @@ Kurallar:
 - Özgün ve kopya olmayan bir metin üret.
     """
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=600
